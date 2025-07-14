@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tops - Adaa Jewellery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Adaa Jewellery</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="collection.html">Collection</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <!-- Cart Sidebar -->
+    <aside class="cart-sidebar">
+      <h2>🛒 Cart</h2>
+      <div class="cart-items" id="cartItems">
+        <!-- Cart items will be shown here -->
+      </div>
+      <div class="total" id="cartTotal">Total: ₹0</div>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </aside>
+
+    <!-- Tops Products -->
+    <section class="product-section">
+      <div class="product">
+        <img src="t1.jpg" alt="Gold Tops">
+        <h3>Gold Tops</h3>
+        <p>₹2,000</p>
+        <button onclick="addToCart('Gold Tops', 2000)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="t2.jpg" alt="Diamond Tops">
+        <h3>Diamond Tops</h3>
+        <p>₹5,500</p>
+        <button onclick="addToCart('Diamond Tops', 5500)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="t3.jpg" alt="Pearl Tops">
+        <h3>Pearl Tops</h3>
+        <p>₹3,000</p>
+        <button onclick="addToCart('Pearl Tops', 3000)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="t4.jpg" alt="Kundan Tops">
+        <h3>Kundan Tops</h3>
+        <p>₹3,500</p>
+        <button onclick="addToCart('Kundan Tops', 3500)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="t5.webp" alt="American Diamond Tops">
+        <h3>American Diamond Tops</h3>
+        <p>₹4,500</p>
+        <button onclick="addToCart('American Diamond Tops', 4500)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="t6.webp" alt="Kulhapuri Tops">
+        <h3>Kulhapuri Tops</h3>
+        <p>₹2,500</p>
+        <button onclick="addToCart('Kulhapuri Tops', 2500)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="t7.webp" alt="Blue Diamond Tops">
+        <h3>Blue Diamond Tops</h3>
+        <p>₹3,300</p>
+        <button onclick="addToCart('Blue Diamond Tops', 3300)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="t8.avif" alt="Flower Leaf Tops">
+        <h3>Flower Leaf Tops</h3>
+        <p>₹3,400</p>
+        <button onclick="addToCart('Flower Leaf Tops', 3400)">Add to Cart</button>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Adaa Jewellery. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    function displayCart() {
+      const cartItems = document.getElementById("cartItems");
+      const cartTotal = document.getElementById("cartTotal");
+      cartItems.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+      } else {
+        cart.forEach(item => {
+          cartItems.innerHTML += `<div>${item.name} - ₹${item.price}</div>`;
+          total += item.price;
+        });
+      }
+
+      // Bold only the total amount
+      cartTotal.innerHTML = `Total: <strong>₹${total}</strong>`;
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      alert("Thank you for your purchase!");
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    window.onload = displayCart;
+  </script>
+
+</body>
+</html>

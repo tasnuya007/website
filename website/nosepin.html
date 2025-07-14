@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nosepins - Adaa Jewellery</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #fffaf3;
+    }
+
+    header, footer {
+      background-color: #f8f0e3;
+      text-align: center;
+      padding: 20px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #b28d5d;
+      font-weight: bold;
+    }
+
+    .main-content {
+      display: flex;
+    }
+
+    .product-section {
+      width: 70%;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      background-color: white;
+      transition: 0.3s;
+    }
+
+    .product:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product h3 {
+      color: #b28d5d;
+      margin-top: 10px;
+    }
+
+    .product p {
+      color: #444;
+      margin: 5px 0;
+    }
+
+    .product button {
+      background-color: #b28d5d;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold; /* ✅ BOLD BUTTON TEXT */
+    }
+
+    .product button:hover {
+      background-color: #a57745;
+    }
+
+    .cart-sidebar {
+      width: 30%;
+      padding: 30px 20px;
+      background-color: #fff6e6;
+      border-left: 1px solid #ddd;
+    }
+
+    .cart-sidebar h2 {
+      color: #b28d5d;
+      margin-bottom: 10px;
+    }
+
+    .cart-items {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .cart-items div {
+      border-bottom: 1px solid #ccc;
+      padding: 5px 0;
+    }
+
+    #cartTotal {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .checkout-btn {
+      background-color: #b28d5d;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      margin-top: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .checkout-btn:hover {
+      background-color: #9f7035;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Adaa Jewellery</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="collection.html">Collection</a>      
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <!-- Cart Sidebar on Left -->
+    <aside class="cart-sidebar">
+      <h2>🛒 Cart</h2>
+      <div class="cart-items" id="cartItems">
+        <!-- Items will appear here -->
+      </div>
+      <div class="total" id="cartTotal">Total: ₹0</div>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </aside>
+
+    <!-- Products Section -->
+    <section class="product-section">
+      <div class="product">
+        <img src="nose1.jpeg" alt="Floral Nosepin">
+        <h3>Floral Nosepin</h3>
+        <p>₹500</p>
+        <button onclick="addToCart('Floral Nosepin', 500)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="nose2.webp" alt="Nosepin">
+        <h3>Nosepin</h3>
+        <p>₹650</p>
+        <button onclick="addToCart('Nosepin', 650)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="nose3.jpeg" alt="Diamond Nosepin">
+        <h3>Diamond Nosepin</h3>
+        <p>₹1200</p>
+        <button onclick="addToCart('Diamond Nosepin', 1200)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="nose4.jpeg" alt="Jodha Nosepin">
+        <h3>Jodha Nosepin</h3>
+        <p>₹400</p>
+        <button onclick="addToCart('Jodha Nosepin', 400)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="nose5.jpeg" alt="Bridal Nosepin">
+        <h3>Bridal Nosepin</h3>
+        <p>₹1500</p>
+        <button onclick="addToCart('Bridal Nosepin', 1500)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="nose6.avif" alt="3 layer Nosepin">
+        <h3>3 layer Nosepin</h3>
+        <p>₹400</p>
+        <button onclick="addToCart('3 layer Nosepin', 400)">Add to Cart</button>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Adaa Jewellery. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    function displayCart() {
+      const cartItems = document.getElementById("cartItems");
+      const cartTotal = document.getElementById("cartTotal");
+      cartItems.innerHTML = "";
+
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+      } else {
+        cart.forEach(item => {
+          const div = document.createElement("div");
+          div.textContent = `${item.name} - ₹${item.price}`;
+          cartItems.appendChild(div);
+          total += item.price;
+        });
+      }
+
+      cartTotal.textContent = `Total: ₹${total}`;
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      alert("Thank you for your purchase!");
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    window.onload = displayCart;
+  </script>
+
+</body>
+</html>

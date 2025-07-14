@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Offers - Adaa Jewellery</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .offer-section {
+      padding: 40px;
+      background-color: #fffaf3;
+    }
+
+    .offer-section h2 {
+      text-align: center;
+      color: #b28d5d;
+      margin-bottom: 30px;
+    }
+
+    .offers-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .offer-card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .offer-card:hover {
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      transform: scale(1.02);
+    }
+
+    .offer-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .offer-title {
+      font-size: 18px;
+      color: #b28d5d;
+      margin-bottom: 10px;
+    }
+
+    .offer-desc {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 15px;
+    }
+
+    .offer-badge {
+      display: inline-block;
+      background-color: #b28d5d;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .limited {
+      background-color: #d9534f;
+    }
+
+    footer {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Adaa Jewellery</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="collection.html">Collection</a>
+      <a href="shop.html">Shop</a>
+      <a href="offers.html">Offers</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="offer-section">
+    <h2>✨ Exclusive Offers Just for You ✨</h2>
+    <div class="offers-container">
+      <div class="offer-card">
+        <img src="offer.mp4" alt="Necklace Offer">
+        <div class="offer-title">20% Off on All Necklaces</div>
+        <div class="offer-desc">Get flat 20% off on all gold & kundan necklaces. Offer valid till this weekend!</div>
+        <div class="offer-badge">Use Code: NECK20</div>
+      </div>
+
+      <!-- <div class="offer-card">
+        <img src="offer2.jpg" alt="Ring Deal">
+        <div class="offer-title">Buy 1 Get 1 Free - Rings</div>
+        <div class="offer-desc">Buy any ring and get one absolutely free. Perfect for gifting or styling!</div>
+        <div class="offer-badge limited">Limited Time</div>
+      </div>
+
+      <div class="offer-card">
+        <img src="offer3.jpg" alt="Earrings Discount">
+        <div class="offer-title">Flat ₹500 Off on Earrings</div>
+        <div class="offer-desc">Enjoy ₹500 off on every earring purchase above ₹3000.</div>
+        <div class="offer-badge">Use Code: EAR500</div>
+      </div>
+
+      <div class="offer-card">
+        <img src="offer4.jpg" alt="Festive Combo">
+        <div class="offer-title">Festive Combo Pack</div>
+        <div class="offer-desc">Get Necklace + Earrings + Bangles combo for just ₹4,999!</div>
+        <div class="offer-badge limited">Hot Deal</div>
+      </div> -->
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Adaa Jewellery. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Maang Tikka - Adaa Jewellery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Adaa Jewellery</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="collection.html">Collection</a>      
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <!-- Cart on Left -->
+    <aside class="cart-sidebar">
+      <h2>🛒 Cart</h2>
+      <div class="cart-items" id="cartItems">
+        <!-- Items will appear here -->
+      </div>
+      <div class="total" id="cartTotal"><strong>Total: ₹0</strong></div>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </aside>
+
+    <!-- Maang Tikka Products on Right -->
+    <section class="product-section">
+      <div class="product">
+        <img src="m1.webp" alt="Kundan Maang Tikka" />
+        <h3>Kundan Maang Tikka</h3>
+        <p>₹500</p>
+        <button onclick="addToCart('Kundan Maang Tikka', 500)"><strong>Add to Cart</strong></button>
+      </div>
+
+      <div class="product">
+        <img src="m2.webp" alt="Gold Maang Tikka" />
+        <h3>Gold Maang Tikka</h3>
+        <p>₹800</p>
+        <button onclick="addToCart('Gold Maang Tikka', 800)"><strong>Add to Cart</strong></button>
+      </div>
+
+      <div class="product">
+        <img src="m3.jpg" alt="Pearl Maang Tikka" />
+        <h3>Pearl Maang Tikka</h3>
+        <p>₹700</p>
+        <button onclick="addToCart('Pearl Maang Tikka', 700)"><strong>Add to Cart</strong></button>
+      </div>
+
+      <div class="product">
+        <img src="m44.jpg" alt="Diamond Maang Tikka" />
+        <h3>Diamond Maang Tikka</h3>
+        <p>₹1,200</p>
+        <button onclick="addToCart('Diamond Maang Tikka', 1200)"><strong>Add to Cart</strong></button>
+      </div>
+
+      <div class="product">
+        <img src="m5.webp" alt="Bridal Maang Tikka" />
+        <h3>Bridal Maang Tikka</h3>
+        <p>₹1,200</p>
+        <button onclick="addToCart('Bridal Maang Tikka', 1200)"><strong>Add to Cart</strong></button>
+      </div>
+
+      <div class="product">
+        <img src="m6.jpg" alt="Bridal Gold Maang Tikka" />
+        <h3>Bridal Gold Maang Tikka</h3>
+        <p>₹2,200</p>
+        <button onclick="addToCart('Bridal Gold Maang Tikka', 2200)"><strong>Add to Cart</strong></button>
+      </div>
+
+      <div class="product">
+        <img src="m8.jpg" alt="MathaPatti" />
+        <h3>MathaPatti</h3>
+        <p>₹1,400</p>
+        <button onclick="addToCart('MathaPatti', 1400)"><strong>Add to Cart</strong></button>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Adaa Jewellery. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    function displayCart() {
+      const cartItems = document.getElementById("cartItems");
+      const cartTotal = document.getElementById("cartTotal");
+      cartItems.innerHTML = "";
+
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+      } else {
+        cart.forEach(item => {
+          const div = document.createElement("div");
+          div.innerHTML = `<strong>${item.name}</strong> - ₹${item.price}`;
+          cartItems.appendChild(div);
+          total += item.price;
+        });
+      }
+
+      cartTotal.innerHTML = `<strong>Total: ₹${total}</strong>`;
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      alert("Thank you for your purchase!");
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    window.onload = displayCart;
+  </script>
+
+</body>
+</html>

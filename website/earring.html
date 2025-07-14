@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Earrings - Adaa Jewellery</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #fffaf3;
+    }
+
+    header, footer {
+      background-color: #f8f0e3;
+      text-align: center;
+      padding: 20px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #b28d5d;
+      font-weight: bold;
+    }
+
+    .main-content {
+      display: flex;
+    }
+
+    .cart-sidebar {
+      width: 25%;
+      padding: 20px;
+      background-color: #fff6e6;
+      border-right: 1px solid #ddd;
+    }
+
+    .cart-sidebar h2 {
+      color: #b28d5d;
+    }
+
+    .cart-items div {
+      border-bottom: 1px solid #ccc;
+      padding: 5px 0;
+      font-size: 14px;
+    }
+
+    .checkout-btn {
+      background-color: #b28d5d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .checkout-btn:hover {
+      background-color: #9f7035;
+    }
+
+    #total {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .product-section {
+      width: 75%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 25px;
+      padding: 40px;
+    }
+
+    .product {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product h3 {
+      color: #b28d5d;
+      margin: 10px 0 5px;
+    }
+
+    .product p {
+      color: #444;
+    }
+
+    .product button {
+      background-color: #b28d5d;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .product button:hover {
+      background-color: #a57745;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Adaa Jewellery</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="collection.html">Collection</a>      
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <!-- Cart Sidebar -->
+    <aside class="cart-sidebar">
+      <h2>🛒 Cart</h2>
+      <div class="cart-items" id="cartItems"></div>
+      <div id="total">Total: ₹0</div>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </aside>
+
+    <!-- Earring Products -->
+    <section class="product-section">
+      <div class="product">
+        <img src="e1.jpg" alt="Kundan Earrings">
+        <h3>Kundan Earrings</h3>
+        <p>₹1,200</p>
+        <button onclick="addToCart('Kundan Earrings', 1200)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="e2.jpg" alt="Pearl Earrings">
+        <h3>Pearl Earrings</h3>
+        <p>₹1,800</p>
+        <button onclick="addToCart('Pearl Earrings', 1800)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="e3.jpg" alt="Gold Earrings">
+        <h3>Gold Earrings</h3>
+        <p>₹2,200</p>
+        <button onclick="addToCart('Gold Earrings', 2200)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="e4.webp" alt="Bahubali Earrings">
+        <h3>Bahubali Earrings</h3>
+        <p>₹3,000</p>
+        <button onclick="addToCart('Bahubali Earrings', 3000)">Add to Cart</button>
+      </div>
+        <div class="product">
+        <img src="e5.webp" alt="Jhumka">
+        <h3>Jhumka</h3>
+        <p>₹3,000</p>
+        <button onclick="addToCart('Jhumka', 4000)">Add to Cart</button>
+      </div>
+        <div class="product">
+        <img src="e6.jpg" alt="Kashmiri Jhumka">
+        <h3>Kashmiri Jhumka</h3>
+        <p>₹3,000</p>
+        <button onclick="addToCart('Kashmiri Jhumka', 3000)">Add to Cart</button>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Adaa Jewellery. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({ name, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      displayCart();
+      // alert(name + " added to cart!");
+    }
+
+    function displayCart() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItems = document.getElementById("cartItems");
+      const totalEl = document.getElementById("total");
+      cartItems.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+        totalEl.textContent = "Total: ₹0";
+      } else {
+        cart.forEach(item => {
+          const div = document.createElement("div");
+          div.textContent = `${item.name} - ₹${item.price}`;
+          cartItems.appendChild(div);
+          total += item.price;
+        });
+        totalEl.textContent = `Total: ₹${total}`;
+      }
+    }
+
+    function checkout() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      alert("Thank you for your purchase!");
+      localStorage.removeItem("cart");
+      displayCart();
+    }
+
+    window.onload = displayCart;
+  </script>
+
+</body>
+</html>

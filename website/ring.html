@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rings - Adaa Jewellery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Adaa Jewellery</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="collection.html">Collection</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <!-- Cart on left -->
+    <aside class="cart-sidebar">
+      <h2>🛒 Cart</h2>
+      <div class="cart-items" id="cartItems">
+        <!-- Items will be displayed here -->
+      </div>
+      <p id="cart-total">Total: ₹0</p>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </aside>
+
+    <!-- Products on right -->
+    <section class="product-section">
+      <div class="product">
+        <img src="r1.jpg" alt="Rings Combo">
+        <h3>Rings Combo</h3>
+        <p>₹500</p>
+        <button onclick="addToCart('Rings Combo', 500)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="r2.jpg" alt="Classic Gold Ring">
+        <h3>Classic Gold Ring</h3>
+        <p>₹800</p>
+        <button onclick="addToCart('Classic Gold Ring', 800)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="r3.jpg" alt="Rose Shade">
+        <h3>Rose Shade</h3>
+        <p>₹600</p>
+        <button onclick="addToCart('Rose Shade', 600)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="r4.jpg" alt="Cocktail Ring">
+        <h3>Cocktail Ring</h3>
+        <p>₹700</p>
+        <button onclick="addToCart('Cocktail Ring', 700)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="r5.jpg" alt="Red Stone Ring">
+        <h3>Red Stone Ring</h3>
+        <p>₹800</p>
+        <button onclick="addToCart('Red Stone Ring', 800)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="r6.jpg" alt="Red Stone Ring">
+        <h3>Red Stone Ring</h3>
+        <p>₹900</p>
+        <button onclick="addToCart('Red Stone Ring', 900)">Add to Cart</button>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Adaa Jewellery. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    function displayCart() {
+      const cartItemsEl = document.getElementById("cartItems");
+      const cartTotalEl = document.getElementById("cart-total");
+      cartItemsEl.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = "<p>Your cart is empty.</p>";
+        cartTotalEl.textContent = "Total: ₹0";
+        return;
+      }
+
+      cart.forEach(item => {
+        const div = document.createElement("div");
+        div.classList.add("cart-item");
+        div.textContent = `${item.name} - ₹${item.price}`;
+        cartItemsEl.appendChild(div);
+        total += item.price;
+      });
+
+      cartTotalEl.textContent = `Total: ₹${total}`;
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      alert("Thank you for your purchase!");
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    window.onload = displayCart;
+  </script>
+
+</body>
+</html>

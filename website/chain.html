@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chains - Adaa Jewellery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Adaa Jewellery</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="collection.html">Collection</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <!-- Cart Sidebar -->
+    <aside class="cart-sidebar">
+      <h2>🛒 Cart</h2>
+      <div class="cart-items" id="cartItems">
+        <!-- Items will be displayed here -->
+      </div>
+      <div class="total" id="cartTotal">Total: ₹0</div>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </aside>
+
+    <!-- Chain Products -->
+    <section class="product-section">
+      <div class="product">
+        <img src="c1.jpg" alt="Gold Chain">
+        <h3>Gold Chain</h3>
+        <p>₹4,000</p>
+        <button onclick="addToCart('Gold Chain', 4000)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="c2.jpeg" alt="Silver Chain">
+        <h3>Silver Chain</h3>
+        <p>₹2,000</p>
+        <button onclick="addToCart('Silver Chain', 2000)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="c33.jpg" alt="Beaded Chain">
+        <h3>Beaded Chain</h3>
+        <p>₹2,500</p>
+        <button onclick="addToCart('Beaded Chain', 2500)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="c4.jpg" alt="Diamond Chain">
+        <h3>Diamond Chain</h3>
+        <p>₹10,000</p>
+        <button onclick="addToCart('Diamond Chain', 10000)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="c5.avif" alt="Diamond Pal Chain">
+        <h3>Diamond Pal Chain</h3>
+        <p>₹10,000</p>
+        <button onclick="addToCart('Diamond Pal Chain', 10000)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="c6.webp" alt="Shell Pearl Chain">
+        <h3>Shell Pearl Chain</h3>
+        <p>₹11,000</p>
+        <button onclick="addToCart('Shell Pearl Chain', 11000)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="c7.webp" alt="American Diamond Chain">
+        <h3>American Diamond Chain</h3>
+        <p>₹10,000</p>
+        <button onclick="addToCart('American Diamond Chain', 10000)">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="c8.webp" alt="Moi Diamond Chain">
+        <h3>Moi Diamond Chain</h3>
+        <p>₹10,000</p>
+        <button onclick="addToCart('Moi Diamond Chain', 10000)">Add to Cart</button>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Adaa Jewellery. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    function displayCart() {
+      const cartItems = document.getElementById("cartItems");
+      const cartTotal = document.getElementById("cartTotal");
+      cartItems.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+      } else {
+        cart.forEach(item => {
+          cartItems.innerHTML += `<div>${item.name} - ₹${item.price}</div>`;
+          total += item.price;
+        });
+      }
+
+      // Bold only the total amount
+      cartTotal.innerHTML = `Total: <strong>₹${total}</strong>`;
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      alert("Thank you for your purchase!");
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    window.onload = displayCart;
+  </script>
+
+</body>
+</html>

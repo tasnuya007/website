@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bangles - Adaa Jewellery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Adaa Jewellery</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="collection.html">Collection</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <!-- Cart Sidebar -->
+    <aside class="cart-sidebar">
+      <h2>🛒 Cart</h2>
+      <div class="cart-items" id="cartItems">
+        <!-- Cart items will appear here -->
+      </div>
+      <div class="total" id="cartTotal"><strong>Total: ₹0</strong></div>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </aside>
+
+    <!-- Bangles Product Section -->
+    <section class="product-section">
+      <div class="product">
+        <img src="b1.jpg" alt="Gold Bangles">
+        <h3>Gold Bangles</h3>
+        <p>₹3000</p>
+        <button onclick="addToCart('Gold Bangles', 3000)"><strong>Add to Cart</strong></button>
+      </div>
+
+      <div class="product">
+        <img src="b2.jpg" alt="Diamond Bangles">
+        <h3>Diamond Bangles</h3>
+        <p>₹5000</p>
+        <button onclick="addToCart('Diamond Bangles', 5000)"><strong>Add to Cart</strong></button>
+      </div>
+
+      <div class="product">
+        <img src="b3.jpg" alt="Stone Bangles">
+        <h3>Stone Bangles</h3>
+        <p>₹2500</p>
+        <button onclick="addToCart('Stone Bangles', 2500)"><strong>Add to Cart</strong></button>
+      </div>
+
+      <div class="product">
+        <img src="b4.webp" alt="Traditional Bangles">
+        <h3>Traditional Bangles</h3>
+        <p>₹4000</p>
+        <button onclick="addToCart('Traditional Bangles', 4000)"><strong>Add to Cart</strong></button>
+      </div>
+
+      <div class="product">
+        <img src="b5.webp" alt="Pearl Bangles">
+        <h3>Pearl Bangles</h3>
+        <p>₹3500</p>
+        <button onclick="addToCart('Pearl Bangles', 3500)"><strong>Add to Cart</strong></button>
+      </div>
+
+      <div class="product">
+        <img src="b6.jpg" alt="Designer Bangles">
+        <h3>Designer Bangles</h3>
+        <p>₹6000</p>
+        <button onclick="addToCart('Designer Bangles', 6000)"><strong>Add to Cart</strong></button>
+      </div>
+       <div class="product">
+        <img src="b7.jpg" alt="Bridal Bangles">
+        <h3>Bridal Bangles</h3>
+        <p>₹6000</p>
+        <button onclick="addToCart('Bridal Bangles', 6000)"><strong>Add to Cart</strong></button>
+      </div>
+      <div class="product">
+        <img src="b8.jpg" alt="Silver Bangles">
+        <h3>Silver Bangles</h3>
+        <p>₹6000</p>
+        <button onclick="addToCart('Silver Bangles', 6000)"><strong>Add to Cart</strong></button>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Adaa Jewellery. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    function displayCart() {
+      const cartItems = document.getElementById("cartItems");
+      const cartTotal = document.getElementById("cartTotal");
+      cartItems.innerHTML = "";
+
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+      } else {
+        cart.forEach(item => {
+          const div = document.createElement("div");
+          div.innerHTML = `<strong>${item.name}</strong> - ₹${item.price}`;
+          cartItems.appendChild(div);
+          total += item.price;
+        });
+      }
+
+      cartTotal.innerHTML = `<strong>Total: ₹${total}</strong>`;
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      alert("Thank you for your purchase!");
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    window.onload = displayCart;
+  </script>
+
+</body>
+</html>

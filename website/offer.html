@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Offers - Adaa Jewellery</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #fffaf3;
+    }
+
+    .offer-section {
+      padding: 60px 20px;
+    }
+
+    .offer-section h2 {
+      text-align: center;
+      color: #b28d5d;
+      margin-bottom: 50px;
+      font-size: 40px;
+    }
+
+    .offers-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .offer-card {
+      background-color: #fff;
+      border: 3px solid #e5d0b5;
+      padding: 40px;
+      text-align: center;
+      border-radius: 16px;
+      max-width: 800px;
+      width: 90%;
+      transition: 0.3s;
+    }
+
+    .offer-card:hover {
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      transform: scale(1.03);
+    }
+
+    .offer-card img {
+      width: 100%;
+      height: auto; /* Allows full image height */
+      object-fit: contain; /* Ensures the full image is shown without cropping */
+      border-radius: 12px;
+      margin-bottom: 25px;
+    }
+
+    .offer-title {
+      font-size: 30px;
+      color: #b28d5d;
+      margin-bottom: 20px;
+    }
+
+    .offer-desc {
+      font-size: 18px;
+      color: #444;
+      margin-bottom: 25px;
+      line-height: 1.6; 
+    }
+
+    .offer-badge {
+      display: inline-block;
+      background-color: #b28d5d;
+      color: white;
+      padding: 12px 28px;
+      font-size: 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+
+    header {
+      background-color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header h1 {
+      color: #b28d5d;
+      font-size: 32px;
+      margin: 0;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #444;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      color: #b28d5d;
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      background-color: #f8f0e3;
+      padding: 25px;
+      color: #444;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+        <div class="logo-container">
+      <img src="logo1.png" alt="Adaa Jewellery Logo" class="logo" />
+      <h1>Adaa Jewellery</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="collection.html">Collection</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="offer-section">
+    <h2>✨ Exclusive Offer Just for You ✨</h2>
+    <div class="offers-container">
+      <div class="offer-card">
+        <img src="offer2.png" alt="Necklace Offer" />
+        <div class="offer-title">30% Off on All Necklaces</div>
+        <div class="offer-desc">Enjoy flat 30% off on all gold & kundan necklaces this weekend only! Don’t miss out on elegant styles at unbeatable prices.</div>
+        <div class="offer-badge">Use Code: NECK20</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Adaa Jewellery. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
